@@ -21,9 +21,11 @@ import {
   NbWindowModule, NbThemeModule, NbLayoutModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -42,7 +44,30 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     ThemeModule.forRoot(),
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbEvaIconsModule,
+    NbEvaIconsModule, 
+
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+
+          baseEndpoint: 'http://localhost:4200/',
+           login: {
+             // ...
+             endpoint: 'auth/login',
+           },
+          /* register: {
+             // ...
+             endpoint: 'auth/register',
+           },
+           logout: {
+            endpoint: '/auth/sign-out',*/
+
+        }),
+      ],
+      forms: {},
+    }),
+
   ],
   bootstrap: [AppComponent],
 })
