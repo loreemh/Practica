@@ -46,28 +46,6 @@ import { LoginComponent } from './components/login/login.component';
     NbLayoutModule,
     NbEvaIconsModule, 
 
-    NbAuthModule.forRoot({
-      strategies: [
-        NbPasswordAuthStrategy.setup({
-          name: 'email',
-
-          baseEndpoint: 'http://localhost:4200/',
-           login: {
-             // ...
-             endpoint: 'auth/login',
-           },
-          /* register: {
-             // ...
-             endpoint: 'auth/register',
-           },
-           logout: {
-            endpoint: '/auth/sign-out',*/
-
-        }),
-      ],
-      forms: {},
-    }),
-
   ],
   bootstrap: [AppComponent],
 })
